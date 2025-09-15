@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Welcome to Secure Login Demo</title>
+</head>
+<body>
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Welcome to Secure Login Demo</h1>
+            <p class="lead">A simple Spring Boot application demonstrating secure authentication.</p>
+            
+            <div sec:authorize="!isAuthenticated()" class="mt-4">
+                <p>Please log in to access the application.</p>
+                <a href="/login" class="btn btn-primary btn-lg">Login</a>
+            </div>
+            
+            <div sec:authorize="isAuthenticated()" class="mt-4">
+                <p>You are already logged in. Go to your dashboard.</p>
+                <a href="/home" class="btn btn-primary btn-lg">Go to Dashboard</a>
+            </div>
+            
+            <div class="mt-5">
+                <h5>Sample User Credentials</h5>
+                <div class="card mt-3">
+                    <div class="card-body text-start">
+                        <p class="mb-1"><strong>Username:</strong> jimmy</p>
+                        <p class="mb-1"><strong>Password:</strong> password</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
